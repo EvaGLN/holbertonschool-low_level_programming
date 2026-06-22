@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /*
- * Print "Programming is like building a multilingual puzzle
+ * main - Print "Programming is like building a multilingual puzzle
  * Followed by a new line
  * Use the function puts
  * You are not allowed to use printf
