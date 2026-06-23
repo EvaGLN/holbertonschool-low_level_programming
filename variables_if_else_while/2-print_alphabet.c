@@ -5,12 +5,12 @@
  */
 int main(void)
 {
-	char alphabet = "a";
+	char minuscule = 'a' ;
 
-	while (alphabet == "z")
+	while (minuscule <= 'z')
 	{
-		putchar(alphabet);
-		alphabet++;
+		putchar(minuscule);
+		minuscule++;
 	}
 	putchar("\n");
 	return (0);
