@@ -13,7 +13,6 @@ int main(void)
 		{
 		putchar(minuscule);
 		}
-		minuscule++;
 	}
 	putchar('\n');
 	return (0);
