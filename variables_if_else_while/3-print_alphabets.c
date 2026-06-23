@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
- * main - print alphabet
+ * main - print alphabet minus maj
  * Return: Always 0
  */
 int main(void)
