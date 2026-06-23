@@ -12,6 +12,6 @@ int main(void)
 		putchar(minuscule);
 		minuscule++;
 	}
-	putchar("\n");
+	putchar('\n');
 	return (0);
 }
