@@ -1,10 +1,12 @@
 #include <stdio.h>
 /**
- * main - 
- * Retrun: Always 0
+ * main - print alphabet
+ * Return: Always 0
  */
 int main(void)
 {
+	int [a-z];
+
 	putchar([a-z]);
 	return (0);
 }
