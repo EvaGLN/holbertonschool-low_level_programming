@@ -5,7 +5,7 @@
  */
 int main(void)
 {
-	char minuscule = 'a' ;
+	char minuscule = 'a';
 
 	while (minuscule <= 'z')
 	{
