@@ -5,8 +5,13 @@
  */
 int main(void)
 {
-	int [a-z];
+	char alphabet = "a";
 
-	putchar([a-z]);
+	while (alphabet == "z")
+	{
+		putchar(alphabet);
+		alphabet++;
+	}
+	putchar("\n");
 	return (0);
 }
