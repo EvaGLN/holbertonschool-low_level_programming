@@ -1,7 +1,6 @@
 #include <stdio.h>
 /**
- * print_most_numbers - print alphabet without e and q
- * Return: Always 0
+ * print_most_numbers - print numbers without 2 & 4
  */
 void print_most_numbers(void)
 {
@@ -15,5 +14,4 @@ void print_most_numbers(void)
 		}
 	}
 	putchar('\n');
-	return (0);
 }
