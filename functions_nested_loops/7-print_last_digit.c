@@ -1,16 +1,19 @@
 #include "main.h"
 /**
  * print_last_digit - obvious
- * Return: Always 0
+ * Return: last
  */
 int print_last_digit(int r)
 {
 	int last;
 
-	last = r % 10;
+	if (r < 0)
 	{
-		_putchar((last < 0 ? -last : last) + '0');
-		return(last);
+		last = (r / 10) * -1;
 	}
-	return (0);
+	else
+	{
+		last = r % 10;
+	}
+	return(last);
 }
