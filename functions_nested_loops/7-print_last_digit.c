@@ -1,6 +1,7 @@
 #include "main.h"
 /**
  * print_last_digit - obvious
+ * @r: reference
  * Return: last
  */
 int print_last_digit(int r)
