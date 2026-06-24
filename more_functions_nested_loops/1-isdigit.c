@@ -1,0 +1,18 @@
+#include "main.h"
+/**
+ * _isdigit - check digit character
+ * @c: to check
+ * Return: Always 0
+ */
+int _islower(int c)
+{
+	if (c >= '0' && c <= '9')
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+	return (0);
+}
