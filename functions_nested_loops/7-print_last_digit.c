@@ -5,10 +5,11 @@
  */
 int print_last_digit(int r)
 {
-	char last;
-	last = (r % 10);
+	int last;
+
+	last = r % 10;
 	{
-		_putchar(last);
+		_putchar(last + '0');
 		return(last);
 	}
 	return (0);
