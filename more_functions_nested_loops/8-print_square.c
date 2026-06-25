@@ -3,7 +3,7 @@
  * print_square - obvious
  * @size: size of the square
  */
-void print_quare(int size)
+void print_square(int size)
 {
 	int x;
 	int y;
