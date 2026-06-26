@@ -5,9 +5,7 @@
  */
 void print_times_table(int n)
 {
-	int line;
-	int column;
-	int result;
+	int line, column, result;
 
 	if (n < 0 || n > 15)
 		return;
