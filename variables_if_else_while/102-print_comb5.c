@@ -13,7 +13,7 @@ int main(void)
 		{
 			for (d = 0; d < 10; d++)
 			{
-				for(u = c + 1; u < 10; u++)
+				for(u = 0; u < 10; u++)
 				{
 					if (d > m || (d == m && u> c))
 					{
