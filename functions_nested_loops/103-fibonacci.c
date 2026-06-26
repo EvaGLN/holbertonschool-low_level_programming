@@ -9,7 +9,6 @@ int main(void)
 
 	a = 2;
 	b = 4;
-	printf("%ld, %ld", a, b);
 	for (; sum <= 4000000;)
 	{
 		sum = a + b;
