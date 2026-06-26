@@ -5,15 +5,16 @@
  */
 int main(void)
 {
-	int a, b, n, sum;
+	long a, b, sum;
+	int n;
 
 	a = 1;
 	b = 2;
-	printf("%d, %d", a, b);
+	printf("%ld, %ld", a, b);
 	for (n = 2; n <=49; n++)
 	{
 		sum = a + b;
-		printf(", %d", sum);
+		printf(", %ld", sum);
 		a = b;
 		b = sum;
 	}
