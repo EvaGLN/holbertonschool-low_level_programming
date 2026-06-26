@@ -13,6 +13,7 @@ int main(void)
 	for (; a <= 4000000;)
 	{
 		sum = sum + a;
+		c = a + b;
 		a = b;
 		b = c;
 	}
