@@ -5,16 +5,16 @@
  */
 int main(void)
 {
-	unsigned long a, b, sum;
+	unsigned long long a, b, sum;
 	int n;
 
 	a = 1;
 	b = 2;
-	printf("%lu, %lu", a, b);
+	printf("%llu, %llu", a, b);
 	for (n = 3; n <= 98; n++)
 	{
 		sum = a + b;
-		printf(", %lu", sum);
+		printf(", %llu", sum);
 		a = b;
 		b = sum;
 	}
