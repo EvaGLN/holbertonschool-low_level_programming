@@ -10,12 +10,12 @@ int main(void)
 	a = 1;
 	b = 2;
 	printf("%d, %d", a, b);
-	for (n = 2; i <=49; n++)
+	for (n = 2; n <=49; n++)
 	{
 		sum = a + b;
 		printf(", %d", sum);
 		a = b;
-		b = tmp;
+		b = sum;
 	}
 	printf("\n");
 	return (0);
