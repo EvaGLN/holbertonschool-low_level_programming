@@ -13,10 +13,9 @@ int main(void)
 	for (; sum <= 4000000;)
 	{
 		sum = a + b;
-		printf(", %ld", sum);
 		a = b;
 		b = sum;
 	}
-	printf("\n");
+	printf("%ld\n", sum);
 	return (0);
 }
