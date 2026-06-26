@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
- * main - print smallest combinations of 2 digits except doubles
+ * main - print twice spaced smallest combinations of 2 digits except doubles
  * Return: Always 0
  */
 int main(void)
@@ -15,15 +15,18 @@ int main(void)
 			{
 				for(u = c + 1; u < 10; u++)
 				{
-					putchar(m + '0');
-					putchar(c + '0');
-					putchar(' ');
-					putchar(d + '0');
-					putchar(u + '0');
-					if (m != 8 || c != 9)
+					if (d > m || (d == m && u> c))
 					{
-						putchar(',');
+						putchar(m + '0');
+						putchar(c + '0');
 						putchar(' ');
+						putchar(d + '0');
+						putchar(u + '0');
+						if (m != 9 || c != 8 || d != 9 || u != 9)
+						{
+							putchar(',');
+							putchar(' ');
+						}
 					}
 				}
 			}
