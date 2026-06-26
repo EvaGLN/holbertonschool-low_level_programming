@@ -5,15 +5,16 @@
  */
 int main(void)
 {
-	long a, b, sum;
+	long a, b, c, sum;
 
 	a = 2;
 	b = 4;
-	for (; sum <= 4000000;)
+	sum = 0;
+	for (; a <= 4000000;)
 	{
-		sum = a + b;
+		sum = sum + a;
 		a = b;
-		b = sum;
+		b = c;
 	}
 	printf("%ld\n", sum);
 	return (0);
