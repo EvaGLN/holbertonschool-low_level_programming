@@ -7,12 +7,15 @@ int main(void)
 {
 	long a, b, c, sum;
 
-	a = 2;
-	b = 4;
+	a = 1;
+	b = 2;
 	sum = 0;
 	for (; a <= 4000000;)
 	{
-		sum = sum + a;
+		if (a % 2 == 0)
+		{
+			sum = sum + a;
+		}
 		c = a + b;
 		a = b;
 		b = c;
