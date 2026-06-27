@@ -20,6 +20,6 @@ int main(void)
     {
         largest = limit;
     }
-    printf("lu\n", largest);
+    printf("%lu\n", largest);
     return (0);
 }
