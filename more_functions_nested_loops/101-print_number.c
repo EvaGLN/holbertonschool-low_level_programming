@@ -11,12 +11,10 @@ void print_number(int n)
 	{
 		_putchar('-');
 	}
-	do
-	{
+	do{
 		temp = temp / 10;
 		count++;
-	}
-	while (temp != 0);
+	}while (temp != 0);
 	for (;count > 1;)
 	{
 		divisor = divisor * 10;
