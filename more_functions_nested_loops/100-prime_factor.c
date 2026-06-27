@@ -3,7 +3,7 @@
 * main - prints the largest prime factor
 * Return: Always 0
 */
-int main(void
+int main(void)
 {
     unsigned long limit, attempt, largest;
 
@@ -21,5 +21,5 @@ int main(void
         largest = limit;
     }
     printf("lu\n", largest);
-    retrun (0);
-})
+    return (0);
+}
