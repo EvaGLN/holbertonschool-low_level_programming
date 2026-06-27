@@ -8,7 +8,8 @@ int main(void)
     unsigned long limit, attempt, largest;
 
     limit = 612852475143UL;
-    for (attempt = 1; attempt <= limit; attempt++)
+    largest = 1;
+    for (attempt = 2; attempt <= limit; attempt++)
     {
         for (; limit % attempt == 0;)
         {
