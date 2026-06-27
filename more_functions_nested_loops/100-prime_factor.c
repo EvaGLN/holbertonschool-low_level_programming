@@ -6,7 +6,7 @@
 int main(void)
 {
 	unsigned long limit, attempt, largest;
-	
+
 	limit = 612852475143UL;
 	largest = 1;
 	for (attempt = 2; attempt <= limit; attempt++)
