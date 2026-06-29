@@ -6,14 +6,17 @@ I've substracted begining to end in order to get the number of ticks it took for
 Float is used to be precise (6 decimals here) as this code runs in so much less time than 1 second.
 
 
+
 ## Observed Performance Differences
 By simplifying how the code is runned, from Naive to Single-pass, I've noticed that performances are +31000 times faster.
 
 Expanding it to make it more meaningful, it means that the job previously done in 3.5 years is now done in 1 hour.
 
 
+
 ## Relation Between Runtime and Energy Consumption
 The longer the task takes to be executed, the higher the consumption is, at least in terms of time.
+
 
 
 ## Limitations of the Experiment
@@ -38,8 +41,8 @@ As long as every parameters are not mesured, the experimentation remains incompl
 \- and so on...
 
 
+
 ## Practical Engineering Takeaway
 More than just ensuring a good result, we need to code smart to save resources as much as possible. Especially nowadays, where reducing environmental footprint is made by small gesturess of everyday life.
 
 But for more precise and meaningful results, experimentations must included way more parameters in order to be as exhaustive as possible.
-
