@@ -11,7 +11,7 @@ int _atoi(char *s)
 	int minus = 1;
 	int decode = 0;
 
-	for (n = 0; s[n] < '0' && s[n] > '9'; n++)
+	for (n = 0; s[n] < '0' || s[n] > '9'; n++)
 	{
 		if (s[n] == '-')
 		{
