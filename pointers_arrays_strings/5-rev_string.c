@@ -4,7 +4,7 @@
  */
 void rev_string(char *s)
 {
-	int a, b, lenght, tmp;
+	int a, *a, b, *b, lenght, tmp;
 	
 	for (lenght = 0; s[lenght] != '\0'; lenght++)
 	{
