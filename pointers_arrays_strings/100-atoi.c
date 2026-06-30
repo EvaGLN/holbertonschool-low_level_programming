@@ -18,13 +18,13 @@ int _atoi(char *s)
 			minus++;
 		}
 	}
-	if (minus % 2 != 0)
+	if (minus % 2 == 0)
 	{
-		minus = -1;
+		minus = 1;
 	}
 	else
 	{
-		minus = 1;
+		minus = -1;
 	}
 	for (n = 0; s[n] != '\0' && (decode == 0 || decode == 1); n++)
 	{
