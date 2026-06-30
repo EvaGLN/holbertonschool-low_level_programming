@@ -10,10 +10,10 @@ void print_rev(char *s)
 	
 	for (lenght = 0; s[lenght] != '\0'; lenght++)
 	{
-		for (caract = lenght - 1; caract >= 0; caract--)
-		{
-			_putchar(s[caract]);
-		}
-		_putchar('\n');
 	}
+	for (caract = lenght - 1; caract >= 0; caract--)
+	{
+		_putchar(s[caract]);
+	}
+	_putchar('\n');
 }
