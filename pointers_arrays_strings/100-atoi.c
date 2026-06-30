@@ -7,7 +7,7 @@
 int _atoi(char *s)
 {
 	int n;
-	int nb = 0;
+	unsigned int nb = 0;
 	int minus = 1;
 	int decode = 0;
 
@@ -30,6 +30,5 @@ int _atoi(char *s)
 			decode = 2;
 		}
 	}
-	nb = minus * nb;
-	return (nb);
+	return (minus * nb);
 }
