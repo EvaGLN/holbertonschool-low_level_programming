@@ -8,23 +8,15 @@ int _atoi(char *s)
 {
 	int n;
 	int nb = 0;
-	int minus = 0;
+	int minus = 1;
 	int decode = 0;
 
 	for (n = 0; s[n] < '0' && s[n] > '9'; n++)
 	{
 		if (s[n] == '-')
 		{
-			minus++;
+			minus *= -1;
 		}
-	}
-	if (minus % 2 == 0)
-	{
-		minus = 1;
-	}
-	else
-	{
-		minus = -1;
 	}
 	for (n = 0; s[n] != '\0' && (decode == 0 || decode == 1); n++)
 	{
