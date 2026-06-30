@@ -27,13 +27,13 @@ int _atoi(char *s)
 		if (s[n] >='0' && s[n] <= '9')
 		{
 			nb = nb * 10 + (s[n] - '0');
-			decode == 1;
+			decode = 1;
 		}
 		else if (decode == 1)
 		{
-			decode == 2;
+			decode = 2;
 		}
 	}
 	nb = minus * nb;
-	return (0)
+	return (0);
 }
