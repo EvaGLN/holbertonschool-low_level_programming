@@ -22,6 +22,10 @@ int _atoi(char *s)
 	{
 		minus = -1;
 	}
+	else
+	{
+		minus = 1;
+	}
 	for (n = 0; s[n] != '\0' && (decode == 0 || decode == 1); n++)
 	{
 		if (s[n] >='0' && s[n] <= '9')
