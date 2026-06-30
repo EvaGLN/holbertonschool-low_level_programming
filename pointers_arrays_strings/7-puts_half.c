@@ -3,7 +3,7 @@
  * puts_half - prints half a string followed by a new line
  * @str: pointer to a char
  */
-void puts-half(char *str)
+void puts_half(char *str)
 {
 	int caract, half;
 
