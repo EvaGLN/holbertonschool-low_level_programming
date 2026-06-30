@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * puts2 - prints 1/2 character followed by new line
- * @str - pointer to a char
+ * @str: pointer to a char
  */
 void puts2(char *str)
 {
