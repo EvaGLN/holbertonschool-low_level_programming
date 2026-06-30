@@ -20,7 +20,7 @@ int _atoi(char *s)
 	}
 	for (n = 0; s[n] != '\0' && (decode == 0 || decode == 1); n++)
 	{
-		if (s[n] >='0' && s[n] <= '9')
+		if (s[n] >= '0' && s[n] <= '9')
 		{
 			nb = nb * 10 + (s[n] - '0');
 			decode = 1;
