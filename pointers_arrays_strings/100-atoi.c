@@ -35,5 +35,5 @@ int _atoi(char *s)
 		}
 	}
 	nb = minus * nb;
-	return (0);
+	return (nb);
 }
