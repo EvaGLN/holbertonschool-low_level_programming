@@ -1,0 +1,15 @@
+#include "main.h"
+/**
+ * puts2 - prints 1/2 character followed by new line
+ * @str - pointer to a char
+ */
+void puts2(char *str)
+{
+	int caract;
+
+	for (caract = 0; str[caract] != '\0'; caract +2)
+	{
+		_putchar(str[caract]);
+	}
+	_putchar('\n');
+}
