@@ -7,9 +7,12 @@ void puts2(char *str)
 {
 	int caract;
 
-	for (caract = 0; str[caract] != '\0'; caract += 2)
+	for (caract = 0; str[caract] != '\0'; caract++)
 	{
-		_putchar(str[caract]);
+		if (caract % 2 == 0)
+		{
+			_putchar(str[caract]);
+		}
 	}
 	_putchar('\n');
 }
