@@ -12,7 +12,7 @@ int main ()
 
 	printf("Welcome to the Simple Calculator!");
 
-	while (choice != 0)
+	while (choice)
 	{
 		printf("Simple Calculator\n1) Add\n2) Substract\n");
 		printf("3) Multiply\n4) Divide\n0) Quit\n");
