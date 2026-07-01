@@ -4,7 +4,7 @@
  * @dest: begining of the string
  * @src: end of the string
  * @n: limit of copy
- * Retrun: point to the resulting string dest
+ * Return: point to the resulting string dest
  */
 char *_strncat(char *dest, char *src, int n)
 {
