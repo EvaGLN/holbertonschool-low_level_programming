@@ -12,17 +12,21 @@ char *cap_string(char *s)
 
 	for (n = 0; s[n] != '\0'; n++)
 	{
-		if (decode == 0 && s[n] >= 'a' && s[n] <= 'z')
+		for (o = 0; sep[o] != '\0' && s[n] != sep[o]; 0++)
+		{
+		}
+		if (sep[o] != '\0')
+		{
+			decode = 0;
+		}
+		else if (decode == 0 && s[n] >= 'a' && s[n] <= 'z')
 		{
 			s[n] = s[n] - ('a' - 'A');
 			decode = 1;
 		}
-		for (o = 0; sep[o] != '\0'; o++)
+		else
 		{
-			if (s[n] == sep[o])
-			{
-				decode = 0;
-			}
+			decode = 1;
 		}
 	}
 	return (s);
