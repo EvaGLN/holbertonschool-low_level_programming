@@ -12,7 +12,7 @@ char *cap_string(char *s)
 
 	for (n = 0; s[n] != '\0'; n++)
 	{
-		for (o = 0; sep[o] != '\0' && s[n] != sep[o]; 0++)
+		for (o = 0; sep[o] != '\0' && s[n] != sep[o]; o++)
 		{
 		}
 		if (sep[o] != '\0')
