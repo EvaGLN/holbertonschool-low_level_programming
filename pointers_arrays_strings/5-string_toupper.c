@@ -1,7 +1,7 @@
-#include "main"
+#include "main.h"
 /**
  * string_toupper - convert lowercase to uppercase
- * Return: Always 0
+ * Return: new value
  */
 char *string_toupper(char *arr)
 {
