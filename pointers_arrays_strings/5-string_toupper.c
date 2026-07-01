@@ -8,7 +8,6 @@ char *string_toupper(char *arr)
 {
 	int i;
 
-
 	for (i = 0; arr[i] != '\0'; i++)
 	{
 		if (arr[i] >= 'a' && arr[i] <= 'z')
