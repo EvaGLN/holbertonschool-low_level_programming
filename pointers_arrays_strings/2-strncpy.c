@@ -9,7 +9,7 @@
 char *_strncpy(char *dest, char *src, int n)
 {
 	int i = 0;
-	char *origin = *dest;
+	char *origin = dest;
 
 	for (i = 0; i < n && *src != '\0'; i++, dest++, src++)
 	{
