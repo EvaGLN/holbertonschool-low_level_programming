@@ -1,8 +1,8 @@
 #include "main.h"
 /**
  * leet - encode a string to L337
- * @:
- * Return: 
+ * @s: string
+ * Return: string changed
  */
 char *leet(char *s)
 {
