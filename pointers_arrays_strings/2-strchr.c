@@ -3,11 +3,11 @@
  * _strchr - locates a char is a string
  * @s: string
  * @c: searched char
- * Return: first occurence of char in string
+ * Return: first occurence of char in string or null
  */
 char *_strchr(char *s, char c)
 {
-	int i = 0;
+	int i;
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
@@ -20,5 +20,5 @@ char *_strchr(char *s, char c)
 	{
 		return (s);
 	}
-	return (NULL);
+	return (s);
 }
