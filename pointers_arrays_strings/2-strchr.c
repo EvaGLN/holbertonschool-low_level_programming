@@ -1,0 +1,24 @@
+#include "main.h"
+/**
+ * _strchr - locates a char is a string
+ * @s: string
+ * @c: searched char
+ * Return: first occurence of char in string
+ */
+char *_strchr(char *s, char c)
+{
+	int i = 0;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (s[i] == c)
+		{
+			return (s);
+		}
+	}
+	if (c == '\0')
+	{
+		return (s);
+	}
+	return (NULL);
+}
