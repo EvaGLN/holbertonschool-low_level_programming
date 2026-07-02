@@ -3,7 +3,7 @@
 /**
  * _strpbrk - search a string for any of a set of bytes
  * @s: string
- * @a: char to match
+ * @accept: string containing bytes to match
  * Return: pointer to byte in s matching any byte in accept, or NULL if not
  */
 char *_strpbrk(char *s, char *accept)
