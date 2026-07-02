@@ -10,11 +10,11 @@ For the same result at the end, we have ran three times an executable designed t
 
 3) Instrumentation lab
 
-We have analyzed the execution time of global code (TOTAL) and its separated steps (BUILD\_DATA, PROCESS, REDUCE) in order to reveal the most time consuming ones that could lead to performances resolutions.
+We have analyzed the execution time of global code (TOTAL) and its separated steps (BUILD\_DATA, PROCESS, REDUCE) in order to reveal the most time consuming ones that could be reworked for performances improvement.
 
 For this complex experimentation, the tick value at the begining and at the end of each section analyzed have been captured (clock to clock\_t).
 
-Begining value has been subtracted to ending value for each section then converted in seconds for it to be human-readable (clock\t to CLOCKS\_PER\_SEC).
+Begining value has been subtracted to ending value for each section then converted in seconds for it to be human-readable (clock\_t to CLOCKS\_PER\_SEC).
 
 ## Observed Performance Differences
 
