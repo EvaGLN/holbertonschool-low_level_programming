@@ -2,8 +2,8 @@
 /**
  * _strspn - get the lenght of a prefix substring
  * @s: string
- * @accept: string containing char to match
- * Return: number of bytes in the initial segment of s
+ * @accept: char to match
+ * Return: max consecutive bytes in s matching accept
  */
 unsigned int _strspn(char *s, char *accept)
 {
@@ -11,16 +11,16 @@ unsigned int _strspn(char *s, char *accept)
 
 	for(count = 0; *s; s++)
 	{
-		for (i = 0; accept[i]; i++)
+		for (i = 0; accept[i]; i++, count++)
 		{
 			if (*s == accept[i])
 			{
-				count++;
-			}
-			else
-			{
 				break;
 			}
+		}
+		if (accept[i] == '\0')
+		{
+			break;
 		}
 	}
 	return (count);
