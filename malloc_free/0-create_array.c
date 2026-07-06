@@ -2,13 +2,13 @@
 #include <stdlib.h>
 /**
  * create_array - create an array of chars and init with specific char
- * @size:
- * @c:
+ * @size: size of array
+ * @c: char to init
  * Return: pointer to the array, NULL if size 0 or NULL if fails
  */
 char *create_array(unsigned int size, char c)
 {
-	unisgned int i;
+	unsigned int i;
 	char *a;
 
 	if (size == 0)
