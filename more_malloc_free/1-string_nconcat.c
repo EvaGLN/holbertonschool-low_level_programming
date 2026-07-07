@@ -1,9 +1,10 @@
 #include "main.h"
 #include <stdlib.h>
 /**
- * str_concat - concatenate 2 strings
+ * string_nconcat - concatenate 2 strings
  * @s1: string 1
  * @s2: string 2
+ * @n: number of bytes of s2 to keep
  * Return: pointer to newly allocated space or NULL if fail
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
