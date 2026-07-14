@@ -15,34 +15,26 @@ void print_all(const char * const format, ...)
 		switch (format[i])
 		{
 			case 'c':
-				{
-					printf("%s%c", sep, va_arg(arg, int));
-					sep = ", ";
-					break;
-				}
+				printf("%s%c", sep, va_arg(arg, int));
+				sep = ", ";
+				break;
 			case 'i':
-				{
-					printf("%s%d", sep, va_arg(arg, int));
-					sep = ", ";
-					break;
-				}
+				printf("%s%d", sep, va_arg(arg, int));
+				sep = ", ";
+				break;
 			case 'f':
-				{
-					printf("%s%f", sep, va_arg(arg, double));
-					sep = ", ";
-					break;
-				}
+				printf("%s%f", sep, va_arg(arg, double));
+				sep = ", ";
+				break;
 			case 's':
+				str = va_arg(arg, char *);
+				if (!str)
 				{
-					str = va_arg(arg, char *);
-					if (!str)
-					{
-						str = "(nil)";
-					}
-					printf("%s%s", sep, str);
-					sep = ", ";
-					break;
+					str = "(nil)";
 				}
+				printf("%s%s", sep, str);
+				sep = ", ";
+				break;
 		}
 		i++;
 	}
