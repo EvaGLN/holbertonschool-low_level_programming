@@ -16,7 +16,7 @@ void print_all(const char * const format, ...)
 		{
 			case 'c':
 				{
-					printf("%s%c", sep, va_arg(arg, char));
+					printf("%s%c", sep, va_arg(arg, int));
 					sep = ", ";
 					break;
 				}
@@ -28,7 +28,7 @@ void print_all(const char * const format, ...)
 				}
 			case 'f':
 				{
-					printf("%s%f", sep, va_arg(arg, float));
+					printf("%s%f", sep, va_arg(arg, double));
 					sep = ", ";
 					break;
 				}
