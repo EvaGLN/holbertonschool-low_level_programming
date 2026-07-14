@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg>
+#include <stdarg.h>
 
 int _putchar(char c);
 
