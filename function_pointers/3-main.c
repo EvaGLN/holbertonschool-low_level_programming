@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 		return (99);
 	}
 	divider = atoi(argv[3]);
-	if ((strcmp(op == "/") == 0 || strcmp(op == "%") == 0) && divider == 0)
+	if ((strcmp(op, "/") == 0 || strcmp(op, "%") == 0) && divider == 0)
 	{
 		printf("Error\n");
 		return (100);
