@@ -1,0 +1,18 @@
+#include "main."
+/**
+ * main - Write a program that multiplies two numbers.
+ * @argc: count of arguments
+ * @argv: number of arguments
+ * Return: Always 0
+ */
+int main(int argc, char *argv[])
+{
+	int i, mul = 1;
+
+	for (i = 0; i < argc; i++)
+	{
+		mul *= atoi(argv[i]);
+	}
+	printf("%d\n", mul);
+	return (0);
+}
