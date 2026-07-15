@@ -3,7 +3,7 @@
  * main - Write a program that multiplies two numbers.
  * @argc: count of arguments
  * @argv: number of arguments
- * Return: Always 0
+ * Return: 0 if success, 1 if fail
  */
 int main(int argc, char *argv[])
 {
