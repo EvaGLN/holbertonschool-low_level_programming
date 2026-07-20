@@ -1,7 +1,8 @@
 # Memory Maps Analysis
 
 Compiled with: `gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -g`
-All addresses below are real, taken directly from actual program runs (not simulated).
+
+All addresses below are real, taken directly from actual program runs.
 
 ## Table of Contents
 1. [stack_example.c](#1-stack_examplec)
@@ -119,7 +120,7 @@ Each `marker` is a **distinct stack slot per call**. Depth 2's `marker=20` is ne
 
 | Allocation | Address | Size | Freed? |
 |---|---|---|---|
-| `alice` struct | `0x5b3146553420` | 16 bytes (`char*` + `int`, padded) | ❌ never freed as intended — freed via `person_free_partial`, but... |
+| `alice` struct | `0x5b3146553420` | 16 bytes (`char*` + `int`, padded) | ❌ never freed as intended — freed via `person_free_partial` |
 | `alice->name` | `0x5b3146553440` | 6 bytes ("Alice\0") | ❌ **leaked, never freed** |
 | `bob` struct | `0x5b3146553460` | 16 bytes | ✅ freed |
 | `bob->name` | `0x5b3146553480` | 4 bytes ("Bob\0") | ✅ freed |
@@ -313,14 +314,14 @@ Address `0x0` and the page around it are reserved and left unmapped by the OS as
 
 ## 5. AI Error Documentation
 
-Two concrete cases where an earlier explanation I (the AI) gave was wrong, and how the actual runtime data corrected it.
+Two concrete cases where an earlier explanation AI gave was wrong, and how the actual runtime data corrected it.
 
 ### Error 1 — `aliasing_example.c`: predicting the value of `b[2]` after `free()`
 
-**What I said (before the program had been run with real data):**
+**What AI said (before the program had been run with real data):**
 > "In practice this often 'works' (reads back 22) because the memory hasn't been reused yet — but it's undefined behavior."
 
-**Why this was misleading:** I implied that reading the original value back (`22`) was the *likely* outcome after `free()`, framing corruption as an edge case. That's backwards for a modern glibc allocator: `free()` immediately writes tcache bookkeeping (a next-pointer and a security key, 16 bytes) into the start of the freed chunk — before any second `malloc()` ever happens. Since `b[2]` and `b[3]` fall inside that first 16-byte region, corruption isn't a rare possibility, it's the expected outcome on this allocator.
+**Why this was misleading:** AI implied that reading the original value back (`22`) was the *likely* outcome after `free()`, framing corruption as an edge case. That's backwards for a modern glibc allocator: `free()` immediately writes tcache bookkeeping (a next-pointer and a security key, 16 bytes) into the start of the freed chunk — before any second `malloc()` ever happens. Since `b[2]` and `b[3]` fall inside that first 16-byte region, corruption isn't a rare possibility, it's the expected outcome on this allocator.
 
 **Correction, based on the real run:**
 ```
@@ -330,7 +331,7 @@ The value is garbage — allocator metadata reinterpreted as an `int` — confir
 
 ### Error 2 — `crash_example.c`: overstating why address `0x0` is unmapped
 
-**What I originally said:**
+**What AI originally said:**
 > "That address is never mapped into the process's address space, so ... this kind of bug is caught immediately by hardware" — phrased as if the unmapped null page exists *specifically* to catch this program's bug.
 
 **Why this was wrong:** The null page being unmapped is a general-purpose OS/architecture convention that predates and has nothing to do with this specific program — it exists so that *any* NULL dereference across *any* program reliably faults instead of silently reading/writing near address zero. Framing it as a mechanism reacting to this program's bug overstates the causal relationship.
