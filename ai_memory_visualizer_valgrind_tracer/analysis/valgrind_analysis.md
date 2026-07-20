@@ -165,7 +165,7 @@ Per the assignment requirement, at least one case where an AI-generated explanat
 
 ### Error: overconfident claim about the value of `b[2]` after `free()` — contradicted by two real runs of the same program
 
-**What I (the AI) claimed**, in the prior `memory_maps.md` correction, after seeing only one earlier run:
+**What AI claimed**, in the prior `memory_maps.md` correction, after seeing only one earlier run:
 > "Any read from within the first 16 bytes of a freed tcache chunk should be expected to return allocator bookkeeping, not the pointer's original contents, even before any reuse by another `malloc()`." — presented as the corrected, reliable rule.
 
 **Why this is wrong:** Comparing the two actual runs pasted in this conversation shows the outcome is **not deterministic**:
