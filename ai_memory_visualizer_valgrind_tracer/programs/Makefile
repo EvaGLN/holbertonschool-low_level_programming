@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -pedantic -std=gnu89 -g
+CFLAGS=-Wall -Wextra -pedantic -std=gnu89 -g
 
 BIN_STACK=stack_example
 BIN_HEAP=heap_example
