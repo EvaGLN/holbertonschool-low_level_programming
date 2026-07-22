@@ -13,7 +13,7 @@ int _sqrt_finder(int n, int i)
 	else if (i * i == n)
 		return (i);
 	else
-		return (_sqrt-analysis(n, i + 1));
+		return (_sqrt_finder(n, i + 1));
 }
 /**
  * _sqrt_recursion - Write a function that returns
@@ -23,5 +23,5 @@ int _sqrt_finder(int n, int i)
  */
 int _sqrt_recursion(int n)
 {
-	return (_sqrt_analysis(n, 0));
+	return (_sqrt_finder(n, 0));
 }
