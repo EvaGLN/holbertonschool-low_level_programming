@@ -6,14 +6,14 @@
  */
 size_t print_dlistint(const dlistint_t *h)
 {
-	size_t count;
+	size_t count;;
 
-	for (count = 0; h!= NULL, count ++, h = h-<next)
+	for (count = 0; h != NULL, count ++, h = h->next)
 	{
-		if (h->str == NULL)
-			printf("[0] (nil)\n");
+		if (h->n == NULL)
+			return (0);
 		else
-			printf("[%u] %s\n", h->len, h->str);
+			printf("%d\n", h->n);
 	}
 	return (count);
 }
