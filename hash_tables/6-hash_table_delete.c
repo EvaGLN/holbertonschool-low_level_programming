@@ -6,7 +6,7 @@
 void hash_table_delete(hash_table_t *ht)
 {
 	unsigned long int index;
-	hash_node_t *temp; *next_node;
+	hash_node_t *temp, *next_node;
 
 	if (ht == NULL)
 		return;
