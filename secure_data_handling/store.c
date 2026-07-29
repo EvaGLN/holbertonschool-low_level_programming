@@ -18,22 +18,37 @@ static node_t *node_create(session_t *s)
 	return n;
 }
 
+/*
+ * Ownership contract: store_add() always takes ownership of "s" when "s"
+ * is non-NULL. On success, the store owns it (reachable via the list).
+ * On any failure (bad store, invalid session, duplicate id, or node
+ * allocation failure), store_add() destroys "s" itself before returning 0.
+ * Callers must never touch or free "s" again after calling store_add().
+ */
 int store_add(store_t *st, session_t *s)
 {
 	node_t *n, *cur;
 
-	if (!st || !s || !s->id)
+	if (!s)
 		return 0;
+
+	if (!st || !s->id) {
+		session_destroy(s);
+		return 0;
+	}
 
 	cur = st->head;
 	while (cur) {
-		if (cur->sess && cur->sess->id && strcmp(cur->sess->id, s->id) == 0)
+		if (cur->sess && cur->sess->id && strcmp(cur->sess->id, s->id) == 0) {
+			session_destroy(s);
 			return 0;
+		}
 		cur = cur->next;
 	}
 
 	n = node_create(s);
 	if (!n) {
+		session_destroy(s);
 		return 0;
 	}
 
@@ -75,10 +90,17 @@ int store_delete(store_t *st, const char *id, session_t **out)
 			else
 				st->head = cur->next;
 
-			if (out)
+			if (out) {
+				/* Caller wants the session: ownership is
+				 * transferred to them. The store must NOT
+				 * destroy it, only detach it from the list. */
 				*out = cur->sess;
+			} else {
+				/* Caller doesn't want the session back:
+				 * the store destroys it (delete-and-destroy). */
+				session_destroy(cur->sess);
+			}
 
-			session_destroy(cur->sess);
 			free(cur);
 			return 1;
 		}
