@@ -1,5 +1,5 @@
 #include "main.h"
-#define BUFFER_SIZE 1024i
+#define BUFFER_SIZE 1024
 /**
  * open_file_from - opens the source file for reading
  * @file_from: name of the file to read from
