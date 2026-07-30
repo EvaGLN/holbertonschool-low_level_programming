@@ -1,18 +1,5 @@
 #include "main.h"
-#define BUFFER_SIZE 1024
-/**
- * check_argc - verifies the correct number of arguments was passed
- * @ac: argument count
- */
-void check_argc(int ac)
-{
-	if (ac != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
-	}
-}
-
+#define BUFFER_SIZE 1024i
 /**
  * open_file_from - opens the source file for reading
  * @file_from: name of the file to read from
@@ -104,7 +91,11 @@ int main(int ac, char **av)
 {
 	int fd_from, fd_to;
 
-	check_argc(ac);
+	if (ac != 3)
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
 	fd_from = open_file_from(av[1]);
 	fd_to = open_file_to(av[2]);
 	copy_content(fd_from, fd_to, av[1], av[2]);
