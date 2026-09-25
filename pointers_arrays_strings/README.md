@@ -1,44 +1,37 @@
 <div align="center"><img src="https://github.com/ksyv/holbertonschool-web_front_end/blob/main/baniere_holberton.png"></div>
 
-# C - Pointers, arrays and strings
+# C - Even more pointers, arrays and strings
 
 ## Table of Contents :
 
-  - [0. 98 Battery st.](#subparagraph0)
-  - [1. Don't swap horses in crossing a stream](#subparagraph1)
-  - [2. This report, by its very length, defends itself against the risk of being read](#subparagraph2)
-  - [3. I do not fear computers. I fear the lack of them](#subparagraph3)
-  - [4. I can only go one way. I've not got a reverse gear](#subparagraph4)
-  - [5. A good engineer thinks in reverse and asks himself about the stylistic consequences of the components and systems he proposes](#subparagraph5)
-  - [6. Half the lies they tell about me aren't true](#subparagraph6)
-  - [7. Winning is only half of it. Having fun is the other half](#subparagraph7)
-  - [8. Arrays are not pointers](#subparagraph8)
-  - [9. strcpy](#subparagraph9)
-  - [10. Great leaders are willing to sacrifice the numbers to save the people. Poor leaders sacrifice the people to save the numbers](#subparagraph10)
-  - [11. Don't hate the hacker, hate the code](#subparagraph11)
-<img src="https://s3.eu-west-3.amazonaws.com/hbtn.intranet.project.files/holbertonschool-low_level_programming/216/IMG_2410.JPG" />
-
+  - [0. memset](#subparagraph0)
+  - [1. memcpy](#subparagraph1)
+  - [2. strchr](#subparagraph2)
+  - [3. strspn](#subparagraph3)
+  - [4. strpbrk](#subparagraph4)
+  - [5. strstr](#subparagraph5)
+  - [6. Chess is mental torture](#subparagraph6)
+  - [7. The line of life is a ragged diagonal between duty and desire](#subparagraph7)
+  - [8. Double pointer, double fun](#subparagraph8)
+  - [9. My primary goal of hacking was the intellectual curiosity, the seduction of adventure](#subparagraph9)
 ## Resources
 
 **Read or watch**:
 
-- [C - Arrays](/rltoken/1PQnbj1BHB7w_mKhxhMWdg) 
-- [C - Pointers](/rltoken/G2_eTEuCaSAXfKYuEteXfQ) 
-- [C - Strings](/rltoken/N7AFmcH2JyKF35ly2RH1Uw) 
-- [Memory Layout](/rltoken/6MlL0ucmD6kNwXANZFZJEg)
-
+- [C - Pointer to Pointer](/rltoken/YoasQWf5LbinwueEzXlghw) 
+- [C – Pointer to Pointer with example](/rltoken/mLxqSzYyRIO3jGMy_MwxDA) 
+- [Multi-dimensional Arrays in C](/rltoken/DCKFJFt4UwqEWwktR4T4Ug) 
+- [Two dimensional (2D) arrays in C programming with example](/rltoken/ZlUU1KicmANpFOkMcruh_w) 
 
 ## Learning Objectives
 
-At the end of this project, you are expected to be able to [explain to anyone](/rltoken/88QozRBD5q_7-ZufBCdmWg), __without the help of Google__:
+At the end of this project, you are expected to be able to [explain to anyone](/rltoken/JOu6Fv_xrMSksw_YZqthTA), __without the help of Google__:
 
 ### General
 
-- What are pointers and how to use them
-- What are arrays and how to use them
-- What are the differences between pointers and arrays
-- How to use strings and how to manipulate them
-- Scope of variables
+- What are pointers to pointers and how to use them
+- What are multidimensional arrays and how to use them
+- What are the most common C standard library functions to manipulate strings
 
 ## Requirements
 
@@ -60,15 +53,19 @@ At the end of this project, you are expected to be able to [explain to anyone](/
 
 ## More Info
 
-You do not need to learn about pointers to functions, pointers to pointers, multidimensional arrays, arrays of structures, `malloc` and `free` - yet.
+You do not need to learn about pointers to functions, arrays of structures, `malloc` and `free` - yet.
 
 
 ## Task
-### 0. 98 Battery st. <a name='subparagraph0'></a>
+### 0. memset <a name='subparagraph0'></a>
 
-Write a function that takes a pointer to an `int` as parameter and updates the value it points to to `98`.
+Write a function that fills memory with a constant byte.
 
-* Prototype: `void reset_to_98(int *n);`
+* Prototype: `char *_memset(char *s, char b, unsigned int n);`
+* The `_memset()` function fills the first `n` bytes of the memory area pointed to by `s` with the constant byte `b`
+* Returns a pointer to the memory area `s`
+
+FYI: The standard library provides a similar function: `memset`. Run `man memset` to learn more.
 
 ```cpp
 julien@ubuntu:~/$ cat 0-main.c
@@ -76,45 +73,32 @@ julien@ubuntu:~/$ cat 0-main.c
 #include <stdio.h>
 
 /**
- * main - check the code 
+ * simple_print_buffer - prints buffer in hexa
+ * @buffer: the address of memory to print
+ * @size: the size of the memory to print
  *
- * Return: Always 0.
+ * Return: Nothing.
  */
-int main(void)
+void simple_print_buffer(char *buffer, unsigned int size)
 {
-    int n;
+        unsigned int i;
 
-    n = 402;
-    printf("n=%d\n", n);
-    reset_to_98(&n);
-    printf("n=%d\n", n);
-    return (0);
+        i = 0;
+        while (i < size)
+        {
+                if (i % 10)
+                {
+                        printf(" ");
+                }
+                if (!(i % 10) && i)
+                {
+                        printf("\n");
+                }
+                printf("0x%02x", buffer[i]);
+                i++;
+        }
+        printf("\n");
 }
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 0-main.c 0-reset_to_98.c -o 0-98
-julien@ubuntu:~/$ ./0-98 
-n=402
-n=98
-julien@ubuntu:~/$
-```
-
-**Repo:**
-
-* GitHub repository: `holbertonschool-low_level_programming`
-* Directory: `pointers_arrays_strings`
-* File: `0-reset_to_98.c`
-
----
-
-### 1. Don't swap horses in crossing a stream <a name='subparagraph1'></a>
-
-Write a function that swaps the values of two integers.
-
-* Prototype: `void swap_int(int *a, int *b);`
-
-```cpp
-julien@ubuntu:~/$ cat 1-main.c
-#include "main.h"
-#include <stdio.h>
 
 /**
  * main - check the code
@@ -123,20 +107,37 @@ julien@ubuntu:~/$ cat 1-main.c
  */
 int main(void)
 {
-    int a;
-    int b;
+    char buffer[98] = {0x00};
 
-    a = 98;
-    b = 42;
-    printf("a=%d, b=%d\n", a, b);
-    swap_int(&a, &b);
-    printf("a=%d, b=%d\n", a, b);
+    simple_print_buffer(buffer, 98);
+    _memset(buffer, 0x01, 95);
+    printf("-------------------------------------------------\n");
+    simple_print_buffer(buffer, 98);    
     return (0);
 }
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 1-main.c 1-swap.c -o 1-swap
-julien@ubuntu:~/$ ./1-swap 
-a=98, b=42
-a=42, b=98
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 0-main.c 0-memset.c -o 0-memset
+julien@ubuntu:~/$ ./0-memset 
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+-------------------------------------------------
+0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01
+0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01
+0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01
+0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01
+0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01
+0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01
+0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01
+0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01
+0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01 0x01
+0x01 0x01 0x01 0x01 0x01 0x00 0x00 0x00
 julien@ubuntu:~/$
 ```
 
@@ -144,17 +145,111 @@ julien@ubuntu:~/$
 
 * GitHub repository: `holbertonschool-low_level_programming`
 * Directory: `pointers_arrays_strings`
-* File: `1-swap.c`
+* File: `0-memset.c`
 
 ---
 
-### 2. This report, by its very length, defends itself against the risk of being read <a name='subparagraph2'></a>
+### 1. memcpy <a name='subparagraph1'></a>
 
-Write a function that returns the length of a string.
+Write a function that copies memory area.
 
-* Prototype: `int _strlen(char *s);`
+* Prototype: `char *_memcpy(char *dest, char *src, unsigned int n);`
+* The `_memcpy()`  function  copies `n` bytes from memory area `src` to memory area `dest`
+* Returns a pointer to `dest`
 
-FYI: The standard library provides a similar function: `strlen`. Run `man strlen` to learn more.
+FYI: The standard library provides a similar function: `memcpy`. Run `man memcpy` to learn more.
+
+```cpp
+julien@ubuntu:~/$ cat 1-main.c
+#include "main.h"
+#include <stdio.h>
+
+/**
+ * simple_print_buffer - prints buffer in hexa
+ * @buffer: the address of memory to print
+ * @size: the size of the memory to print
+ *
+ * Return: Nothing.
+ */
+void simple_print_buffer(char *buffer, unsigned int size)
+{
+    unsigned int i;
+
+    i = 0;
+    while (i < size)
+    {
+        if (i % 10)
+        {
+            printf(" ");
+        }
+        if (!(i % 10) && i)
+        {
+            printf("\n");
+        }
+        printf("0x%02x", buffer[i]);
+        i++;
+    }
+    printf("\n");
+}
+
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    char buffer[98] = {0};
+    char buffer2[98] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+
+    simple_print_buffer(buffer, 98);
+    _memcpy(buffer + 50, buffer2, 10);
+    printf("-------------------------------------------------\n");
+    simple_print_buffer(buffer, 98);    
+    return (0);
+}
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 1-main.c 1-memcpy.c -o 1-memcpy
+julien@ubuntu:~/$ ./1-memcpy 
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+-------------------------------------------------
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08 0x09 0x0a
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+julien@ubuntu:~/$
+```
+
+**Repo:**
+
+* GitHub repository: `holbertonschool-low_level_programming`
+* Directory: `pointers_arrays_strings`
+* File: `1-memcpy.c`
+
+---
+
+### 2. strchr <a name='subparagraph2'></a>
+
+Write a function that locates a character in a string.
+
+* Prototype: `char *_strchr(char *s, char c);`
+* Returns a pointer to the first occurrence of the character `c` in the string `s`, or `NULL` if the character is not  found
+
+FYI: The standard library provides a similar function: `strchr`. Run `man strchr` to learn more.
 
 ```cpp
 julien@ubuntu:~/$ cat 2-main.c
@@ -168,17 +263,20 @@ julien@ubuntu:~/$ cat 2-main.c
  */
 int main(void)
 {
-    char *str;
-    int len;
+    char *s = "hello";
+    char *f;
 
-    str = "My first strlen!";
-    len = _strlen(str);
-    printf("%d\n", len);
+    f = _strchr(s, 'l');
+
+    if (f != NULL)
+    {
+        printf("%s\n", f);
+    }
     return (0);
 }
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 2-main.c 2-strlen.c -o 2-strlen
-julien@ubuntu:~/$ ./2-strlen 
-16
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 2-main.c 2-strchr.c -o 2-strchr
+julien@ubuntu:~/$ ./2-strchr 
+llo
 julien@ubuntu:~/$
 ```
 
@@ -186,21 +284,23 @@ julien@ubuntu:~/$
 
 * GitHub repository: `holbertonschool-low_level_programming`
 * Directory: `pointers_arrays_strings`
-* File: `2-strlen.c`
+* File: `2-strchr.c`
 
 ---
 
-### 3. I do not fear computers. I fear the lack of them <a name='subparagraph3'></a>
+### 3. strspn <a name='subparagraph3'></a>
 
-Write a function that prints a string, followed by a new line, to `stdout`.
+Write a function that gets the length of a prefix substring.
 
-* Prototype: `void _puts(char *str);`
+* Prototype: `unsigned int _strspn(char *s, char *accept);`
+* Returns the number of bytes in the initial segment of `s` which consist only of bytes from `accept`
 
-FYI: The standard library provides a similar function: `puts`. Run `man puts` to learn more.
+FYI: The standard library provides a similar function: `strspn`. Run `man strspn` to learn more.
 
-```typescript
+```cpp
 julien@ubuntu:~/$ cat 3-main.c
 #include "main.h"
+#include <stdio.h>
 
 /**
  * main - check the code
@@ -209,15 +309,17 @@ julien@ubuntu:~/$ cat 3-main.c
  */
 int main(void)
 {
-    char *str;
+    char *s = "hello, world";
+    char *f = "oleh";
+    unsigned int n;
 
-    str = "I do not fear computers. I fear the lack of them - Isaac Asimov";
-    _puts(str);
+    n = _strspn(s, f);
+    printf("%u\n", n);
     return (0);
 }
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 _putchar.c 3-main.c 3-puts.c -o 3-puts
-julien@ubuntu:~/$ ./3-puts 
-I do not fear computers. I fear the lack of them - Isaac Asimov
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 3-main.c 3-strspn.c -o 3-strspn
+julien@ubuntu:~/$ ./3-strspn 
+5
 julien@ubuntu:~/$
 ```
 
@@ -225,19 +327,24 @@ julien@ubuntu:~/$
 
 * GitHub repository: `holbertonschool-low_level_programming`
 * Directory: `pointers_arrays_strings`
-* File: `3-puts.c`
+* File: `3-strspn.c`
 
 ---
 
-### 4. I can only go one way. I've not got a reverse gear <a name='subparagraph4'></a>
+### 4. strpbrk <a name='subparagraph4'></a>
 
-Write a function that prints a string, in reverse, followed by a new line.
+Write a function that searches a string for any of a set of bytes.
 
-* Prototype: `void print_rev(char *s);`
+* Prototype: `char *_strpbrk(char *s, char *accept);`
+* The `_strpbrk()`  function locates the first occurrence in the string `s` of any of the bytes in the string `accept`
+* Returns a pointer to the byte in `s` that matches one of the bytes in `accept`,  or `NULL` if no such byte is found
 
-```typescript
+FYI: The standard library provides a similar function: `strpbrk`. Run `man strpbrk` to learn more.
+
+```cpp
 julien@ubuntu:~/$ cat 4-main.c
 #include "main.h"
+#include <stdio.h>
 
 /**
  * main - check the code
@@ -246,15 +353,17 @@ julien@ubuntu:~/$ cat 4-main.c
  */
 int main(void)
 {
-    char *str;
+    char *s = "hello, world";
+    char *f = "world";
+    char *t;
 
-    str = "I do not fear computers. I fear the lack of them - Isaac Asimov";
-    print_rev(str);
+    t = _strpbrk(s, f);
+    printf("%s\n", t);
     return (0);
 }
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 _putchar.c 4-main.c 4-print_rev.c -o 4-print_rev
-julien@ubuntu:~/$ ./4-print_rev 
-vomisA caasI - meht fo kcal eht raef I .sretupmoc raef ton od I
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 4-main.c 4-strpbrk.c -o 4-strpbrk
+julien@ubuntu:~/$ ./4-strpbrk 
+llo, world
 julien@ubuntu:~/$
 ```
 
@@ -262,15 +371,19 @@ julien@ubuntu:~/$
 
 * GitHub repository: `holbertonschool-low_level_programming`
 * Directory: `pointers_arrays_strings`
-* File: `4-print_rev.c`
+* File: `4-strpbrk.c`
 
 ---
 
-### 5. A good engineer thinks in reverse and asks himself about the stylistic consequences of the components and systems he proposes <a name='subparagraph5'></a>
+### 5. strstr <a name='subparagraph5'></a>
 
-Write a function that reverses a string.
+Write a function that locates a substring.
 
-* Prototype: `void rev_string(char *s);`
+* Prototype: `char *_strstr(char *haystack, char *needle);`
+* The `_strstr()` function finds the first occurrence of the substring `needle` in the string `haystack`.  The terminating null bytes (`\0`) are not compared
+* Returns a pointer to the beginning of the located substring, or `NULL` if the substring is not found.
+
+FYI: The standard library provides a similar function: `strstr`. Run `man strstr` to learn more.
 
 ```cpp
 julien@ubuntu:~/$ cat 5-main.c
@@ -284,17 +397,17 @@ julien@ubuntu:~/$ cat 5-main.c
  */
 int main(void)
 {
-    char s[10] = "My School";
+    char *s = "hello, world";
+    char *f = "world";
+    char *t;
 
-    printf("%s\n", s);
-    rev_string(s);
-    printf("%s\n", s);
+    t = _strstr(s, f);
+    printf("%s\n", t);
     return (0);
 }
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 5-main.c 5-rev_string.c -o 5-rev_string
-julien@ubuntu:~/$ ./5-rev_string 
-My School
-loohcS yM
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 5-main.c 5-strstr.c -o 5-strstr
+julien@ubuntu:~/$ ./5-strstr 
+world
 julien@ubuntu:~/$
 ```
 
@@ -302,143 +415,18 @@ julien@ubuntu:~/$
 
 * GitHub repository: `holbertonschool-low_level_programming`
 * Directory: `pointers_arrays_strings`
-* File: `5-rev_string.c`
+* File: `5-strstr.c`
 
 ---
 
-### 6. Half the lies they tell about me aren't true <a name='subparagraph6'></a>
+### 6. Chess is mental torture <a name='subparagraph6'></a>
 
-Write a function that prints every other character of a string, starting with the first character, followed by a new line.
+Write a function that prints the chessboard.
 
-* Prototype: `void puts2(char *str);`
-
-```typescript
-julien@ubuntu:~/$ cat 6-main.c
-#include "main.h"
-
-/**
- * main - check the code
- *
- * Return: Always 0.
- */
-int main(void)
-{
-    char *str;
-
-    str = "0123456789";
-    puts2(str);
-    return (0);
-}
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 _putchar.c 6-main.c 6-puts2.c -o 6-puts2
-julien@ubuntu:~/$ ./6-puts2 
-02468
-julien@ubuntu:~/$
-```
-
-**Repo:**
-
-* GitHub repository: `holbertonschool-low_level_programming`
-* Directory: `pointers_arrays_strings`
-* File: `6-puts2.c`
-
----
-
-### 7. Winning is only half of it. Having fun is the other half <a name='subparagraph7'></a>
-
-Write a function that prints half of a string, followed by a new line.
-
-* Prototype: `void puts_half(char *str);`
-* The function should print the second half of the string
-* If the number of characters is odd, the function should print the last `n` characters of the string, where `n = (length_of_the_string + 1) / 2`
-
-```typescript
-julien@ubuntu:~/$ cat 7-main.c
-#include "main.h"
-
-/**
- * main - check the code
- *
- * Return: Always 0.
- */
-int main(void)
-{
-    char *str;
-
-    str = "0123456789";
-    puts_half(str);
-    return (0);
-}
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 _putchar.c 7-main.c 7-puts_half.c -o 7-puts_half
-julien@ubuntu:~/$ ./7-puts_half 
-56789
-julien@ubuntu:~/$
-```
-
-**Repo:**
-
-* GitHub repository: `holbertonschool-low_level_programming`
-* Directory: `pointers_arrays_strings`
-* File: `7-puts_half.c`
-
----
-
-### 8. Arrays are not pointers <a name='subparagraph8'></a>
-
-Write a function that prints `n` elements of an array of integers, followed by a new line.
-
-* Prototype: `void print_array(int *a, int n);`
-* where `n` is the number of elements of the array to be printed
-* Numbers must be separated by comma, followed by a space
-* The numbers should be displayed in the same order as they are stored in the array
-* You are allowed to use `printf`
-
-```php
-julien@ubuntu:~/$ cat 8-main.c
-#include "main.h"
-
-/**
- * main - check the code for
- *
- * Return: Always 0.
- */
-int main(void)
-{
-    int array[5];
-
-    array[0] = 98;
-    array[1] = 402;
-    array[2] = -198;
-    array[3] = 298;
-    array[4] = -1024;
-    print_array(array, 5);
-    return (0);
-}
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 8-main.c 8-print_array.c -o 8-print_array
-julien@ubuntu:~/$ ./8-print_array 
-98, 402, -198, 298, -1024
-julien@ubuntu:~/$
-```
-
-**Repo:**
-
-* GitHub repository: `holbertonschool-low_level_programming`
-* Directory: `pointers_arrays_strings`
-* File: `8-print_array.c`
-
----
-
-### 9. strcpy <a name='subparagraph9'></a>
-
-* Prototype: `char *_strcpy(char *dest, char *src);`
-
-Write a function that copies the string pointed to by `src`, including the terminating null byte (`\0`), to the buffer pointed to by `dest`.
-
-* Return value: the pointer to `dest`
-
-FYI: The standard library provides a similar function: `strcpy`. Run `man strcpy` to learn more.
+* Prototype: `void print_chessboard(char (*a)[8]);`
 
 ```cpp
-julien@ubuntu:~/$ cat 9-main.c
+julien@ubuntu:~/$ cat 7-main.c 
 #include "main.h"
 #include <stdio.h>
 
@@ -449,18 +437,29 @@ julien@ubuntu:~/$ cat 9-main.c
  */
 int main(void)
 {
-    char s1[98];
-    char *ptr;
-
-    ptr = _strcpy(s1, "First, solve the problem. Then, write the code\n");
-    printf("%s", s1);
-    printf("%s", ptr);
+    char board[8][8] = {
+        {'r', 'k', 'b', 'q', 'k', 'b', 'k', 'r'},
+        {'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+        {'R', 'K', 'B', 'Q', 'K', 'B', 'K', 'R'},
+    };
+    print_chessboard(board);
     return (0);
 }
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 9-main.c 9-strcpy.c -o 9-strcpy
-julien@ubuntu:~/$ ./9-strcpy 
-First, solve the problem. Then, write the code
-First, solve the problem. Then, write the code
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 _putchar.c 7-main.c 7-print_chessboard.c -o 7-print_chessboard
+julien@ubuntu:~/$ ./7-print_chessboard 
+rkbqkbkr
+pppppppp
+
+
+
+
+PPPPPPPP
+RKBQKBKR
 julien@ubuntu:~/$
 ```
 
@@ -468,24 +467,68 @@ julien@ubuntu:~/$
 
 * GitHub repository: `holbertonschool-low_level_programming`
 * Directory: `pointers_arrays_strings`
-* File: `9-strcpy.c`
+* File: `7-print_chessboard.c`
 
 ---
 
-### 10. Great leaders are willing to sacrifice the numbers to save the people. Poor leaders sacrifice the people to save the numbers <a name='subparagraph10'></a>
+### 7. The line of life is a ragged diagonal between duty and desire <a name='subparagraph7'></a>
 
-Write a function that convert a string to an integer.
+Write a function that prints the sum of the two diagonals of a square matrix of integers.
 
-* Prototype: `int _atoi(char *s);`
-* The number in the string can be preceded by an infinite number of characters
-* You need to take into account all the `-` and `+` signs before the number
-* If there are no numbers in the string, the function must return `0`
-* You are not allowed to use `long`
-* You are not allowed to declare new variables of "type" array
-* You are not allowed to hard-code special values
-* We will use the `-fsanitize=signed-integer-overflow` gcc flag to compile your code.
+* Prototype: `void print_diagsums(int *a, int size);`
+* Format: see example
+* You are allowed to use the standard library
 
-FYI: The standard library provides a similar function: `atoi`. Run `man atoi` to learn more.
+Note that in the following example we are casting an `int[][]` into an `int*`. This is not something you should do. The goal here is to make sure you understand how an array of array is stored in memory.
+
+```cpp
+julien@ubuntu:~/$ cat 8-main.c
+#include "main.h"
+#include <stdio.h>
+
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    int c3[3][3] = {
+        {0, 1, 5},
+        {10, 11, 12},
+        {1000, 101, 102},
+    };
+    int c5[5][5] = {
+        {0, 1, 5, 12124, 1234},
+        {10, 11, 12, 123521, 12512},
+        {1000, 101, 102, 12545, 214543435},
+        {100, 1012451, 11102, 12545, 214543435},
+        {10, 12401, 10452, 11542545, 1214543435},
+    };
+    print_diagsums((int *)c3, 3);
+    print_diagsums((int *)c5, 5);
+    return (0);
+}
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 8-main.c 8-print_diagsums.c -o 8-print_diagsums
+julien@ubuntu:~/$ ./8-print_diagsums 
+113, 1016
+1214556093, 1137318
+julien@ubuntu:~/$
+```
+
+**Repo:**
+
+* GitHub repository: `holbertonschool-low_level_programming`
+* Directory: `pointers_arrays_strings`
+* File: `8-print_diagsums.c`
+
+---
+
+### 8. Double pointer, double fun <a name='subparagraph8'></a>
+
+Write a function that sets the value of a pointer to a char.
+
+* Prototype: `void set_string(char **s, char *to);`
 
 ```cpp
 julien@ubuntu:~/$ cat 100-main.c
@@ -499,36 +542,18 @@ julien@ubuntu:~/$ cat 100-main.c
  */
 int main(void)
 {
-    int nb;
+    char *s0 = "Bob Dylan";
+    char *s1 = "Robert Allen";
 
-    nb = _atoi("98");
-    printf("%d\n", nb);
-    nb = _atoi("-402");
-    printf("%d\n", nb);
-    nb = _atoi("          ------++++++-----+++++--98");
-    printf("%d\n", nb);
-    nb = _atoi("214748364");
-    printf("%d\n", nb);
-    nb = _atoi("0");
-    printf("%d\n", nb);
-    nb = _atoi("Suite 402");
-    printf("%d\n", nb);
-    nb = _atoi("         +      +    -    -98 Battery Street; San Francisco, CA 94111 - USA             ");
-    printf("%d\n", nb);
-    nb = _atoi("---++++ -++ Sui - te -   402 #cisfun :)");
-    printf("%d\n", nb);
+    printf("%s, %s\n", s0, s1);
+    set_string(&s1, s0);
+    printf("%s, %s\n", s0, s1);
     return (0);
 }
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 -fsanitize=signed-integer-overflow 100-main.c 100-atoi.c -o 100-atoi
-julien@ubuntu:~/$ ./100-atoi 
-98
--402
--98
-214748364
-0
-402
-98
-402
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 100-main.c 100-set_string.c -o 100-set_string
+julien@ubuntu:~/$ ./100-set_string 
+Bob Dylan, Robert Allen
+Bob Dylan, Bob Dylan
 julien@ubuntu:~/$
 ```
 
@@ -536,31 +561,25 @@ julien@ubuntu:~/$
 
 * GitHub repository: `holbertonschool-low_level_programming`
 * Directory: `pointers_arrays_strings`
-* File: `100-atoi.c`
+* File: `100-set_string.c`
 
 ---
 
-### 11. Don't hate the hacker, hate the code <a name='subparagraph11'></a>
+### 9. My primary goal of hacking was the intellectual curiosity, the seduction of adventure <a name='subparagraph9'></a>
 
-Create a program that generates random valid passwords for the program 101-crackme.
+Create a file that contains the password for the crackme2 executable.
 
-* You are allowed to use the standard library
-* You don't have to pass the `betty-style` tests (you still need to pass the `betty-doc` tests)
-* man `srand`, `rand`, `time`
-* `gdb` and `objdump` can help
-
-```ruby
-julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra 101-keygen.c -o 101-keygen
-julien@ubuntu:~/$ ./101-crackme "`./101-keygen`"
-Tada! Congrats
-julien@ubuntu:~/$
-```
+* Your file should contain the exact password, no new line, no extra space
+* `ltrace`, `ldd`, `gdb` and `objdump` can help
+* You may need to install the `openssl` library to run the `crakme2` program: `sudo apt install libssl-dev`
+* Edit the source list `sudo nano /etc/apt/sources.list` to add the following line: `deb http://security.ubuntu.com/ubuntu xenial-security main`
+Then `sudo apt update` and `sudo apt install libssl1.0.0`
 
 **Repo:**
 
 * GitHub repository: `holbertonschool-low_level_programming`
 * Directory: `pointers_arrays_strings`
-* File: `101-keygen.c`
+* File: `101-crackme_password`
 
 ---
 
